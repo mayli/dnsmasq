@@ -188,7 +188,8 @@ int in_arpa_name_2_addr(char *namein, union all_addr *addrp)
 	  char *cp;
 	  for (cp = cp1; *cp; cp++)
 	    if (!isdigit((unsigned char)*cp))
-	      return 0;
+	      break;
+	  if(*cp) continue; // skip subnet "0/24"
 	  
 	  addr[3] = addr[2];
 	  addr[2] = addr[1];
